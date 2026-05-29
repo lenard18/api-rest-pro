@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: api-rest-pro
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - JWT_SECRET=c2VjcmV0S2V5UGFyYUxlb25hcmRvR29tZXpQb3J0YWZvbGlvMjAyNlByb2plY3Q=
+      - JWT_EXPIRATION=86400000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/api-docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
