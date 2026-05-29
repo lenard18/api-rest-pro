@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: api-rest-pro
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: JWT_SECRET
+        value: c2VjcmV0S2V5UGFyYUxlb25hcmRvR29tZXpQb3J0YWZvbGlvMjAyNlByb2plY3Q=
+      - key: JWT_EXPIRATION
+        value: "86400000"
+      - key: PORT
+        value: "8080"
+    healthCheckPath: /api-docs
